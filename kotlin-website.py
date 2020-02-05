@@ -232,11 +232,18 @@ def collections_redirect():
 @app.route('/')
 def index_page():
     features = get_kotlin_features()
-    ab = {'news': True, 'intro': True} if request.args.get('v') == '1' else {}
     return render_template('pages/index.html',
                            is_index_page=True,
                            features=features,
-                           ab=ab
+                           )
+
+@app.route('/landing')
+def index_page():
+    features = get_kotlin_features()
+    return render_template('pages/index.html',
+                           is_index_page=True,
+                           features=features,
+                           ab={'news': True, 'intro': True}
                            )
 
 def process_page(page_path):
