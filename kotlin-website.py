@@ -237,7 +237,7 @@ def index_page():
                            features=features,
                            )
 
-@app.route('/main')
+@app.route('/main/')
 def index_page_abv1():
     features = get_kotlin_features()
     return render_template('pages/index.html',
