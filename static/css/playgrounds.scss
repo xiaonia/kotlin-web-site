@@ -7,7 +7,9 @@
 
 .CodeMirror,
 .CodeMirror pre,
-.CodeMirror .CodeMirror-code pre {
+.CodeMirror .CodeMirror-code pre,
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
   font-family: 'JetBrains Mono', $font-family-mono;
 }
 
