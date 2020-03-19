@@ -26,7 +26,7 @@ val demo = Outer.Nested().foo() // == 2
 
 ## Inner classes
 
-A nested class marked as *inner*{: .keyword } can access the members of its outer class. Inner classes carry a reference to an object of an outer class:
+<span style="color:red;">A nested class marked as *inner*{: .keyword } can access the members of its outer class. Inner classes carry a reference to an object of an outer class:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -62,8 +62,8 @@ window.addMouseListener(object : MouseAdapter() {
 
 </div>
 
-_Note_: on the JVM, if the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method),
-you can create it using a lambda expression prefixed with the type of the interface:
+_Note_: <span style="color:red;">on the JVM, if the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method),
+you can create it using a lambda expression prefixed with the type of the interface:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 

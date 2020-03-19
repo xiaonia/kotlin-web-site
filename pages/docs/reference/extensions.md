@@ -66,9 +66,9 @@ See [Generic functions](generics.html).
 Extensions do not actually modify classes they extend. By defining an extension, you do not insert new members into a class,
 but merely make new functions callable with the dot-notation on variables of this type.
 
-We would like to emphasize that extension functions are dispatched **statically**, i.e. they are not virtual by receiver type.
-This means that the extension function being called is determined by the type of the expression on which the function is invoked,
-not by the type of the result of evaluating that expression at runtime. For example:
+<span style="color:red;">We would like to emphasize that extension functions are dispatched **statically**, i.e. they are not virtual by receiver type.</span>
+<span style="color:red;">This means that the extension function being called is determined by the type of the expression on which the function is invoked,
+not by the type of the result of evaluating that expression at runtime. </span>For example:
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
 
@@ -96,8 +96,8 @@ fun main() {
 This example prints "_Shape_", because the extension function being called depends only on the declared type of the
 parameter `s`, which is the `Shape` class.
 
-If a class has a member function, and an extension function is defined which has the same receiver type,
-the same name, and is applicable to given arguments, the **member always wins**.
+<span style="color:red;">If a class has a member function, and an extension function is defined which has the same receiver type,
+the same name, and is applicable to given arguments, the **member always wins**.</span>
 For example:
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
@@ -119,7 +119,7 @@ fun main() {
 
 This code prints "_Class method_".
 
-However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:
+<span style="color:red;">However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:</span>
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
 
@@ -170,9 +170,9 @@ val <T> List<T>.lastIndex: Int
 
 </div>
 
-Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
+<span style="color:red;">Note that, since extensions do not actually insert members into classes, there's no efficient way for an extension 
 property to have a [backing field](properties.html#backing-fields). This is why **initializers are not allowed for 
-extension properties**. Their behavior can only be defined by explicitly providing getters/setters.
+extension properties**. Their behavior can only be defined by explicitly providing getters/setters.</span>
 
 Example:
 
@@ -186,9 +186,9 @@ val House.number = 1 // error: initializers are not allowed for extension proper
 
 ## Companion object extensions
 
-If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
+<span style="color:red;">__If a class has a [companion object](object-declarations.html#companion-objects) defined, you can also define extension
 functions and properties for the companion object. Just like regular members of the companion object,
-they can be called using only the class name as the qualifier:
+they can be called using only the class name as the qualifier:__</span>
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
 
@@ -274,8 +274,8 @@ fun main() {
 
 </div>
 
-In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes
-precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified).
+<span style="color:red;">In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes
+precedence. To refer to the member of the dispatch receiver you can use the [qualified `this` syntax](this-expressions.html#qualified).</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -289,8 +289,8 @@ class Connection {
 ```
 </div>
 
-Extensions declared as members can be declared as `open` and overridden in subclasses. This means that the dispatch of such
-functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type.
+<span style="color:red;">Extensions declared as members can be declared as `open` and overridden in subclasses. This means that the dispatch of such
+functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type.</span>
 
 <div class="sample" markdown="1" theme="idea" data-min-compiler-version="1.3">
 
@@ -336,4 +336,4 @@ fun main() {
 Extensions utilize the same [visibility of other entities](visibility-modifiers.html) as regular functions declared in the same scope would. For example:
 
 * An extension declared on top level of a file has access to the other `private` top-level declarations in the same file;
-* If an extension is declared outside its receiver type, such an extension cannot access the receiver's `private` members.
+* <span style="color:red;">If an extension is declared outside its receiver type, such an extension cannot access the receiver's `private` members.</span>

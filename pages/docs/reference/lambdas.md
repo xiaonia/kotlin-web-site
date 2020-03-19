@@ -89,17 +89,17 @@ These types have a special notation that corresponds to the signatures of the fu
 
 * All function types have a parenthesized parameter types list and a return type: `(A, B) -> C` denotes a type that
  represents functions taking two arguments of types `A` and `B` and returning a value of type `C`. 
- The parameter types list may be empty, as in `() -> A`. The [`Unit` return type](functions.html#unit-returning-functions) 
- cannot be omitted. 
- 
-* Function types can optionally have an additional *receiver* type, which is specified before a dot in the notation:
+ <span style="color:red;">The parameter types list may be empty, as in `() -> A`. The [`Unit` return type](functions.html#unit-returning-functions) 
+ cannot be omitted.</span> 
+
+* <span style="color:red;">Function types can optionally have an additional *receiver* type, which is specified before a dot in the notation</span>:
  the type `A.(B) -> C` represents functions that can be called on a receiver object of `A` with a parameter of `B` and
  return a value of `C`.
  [Function literals with receiver](#function-literals-with-receiver) are often used along with these types.
- 
+
 * [Suspending functions](coroutines.html#suspending-functions) belong to function types of a special kind, which have a *suspend*{: .keyword} modifier in the 
  notation, such as `suspend () -> Unit` or `suspend A.(B) -> C`.
- 
+
 The function type notation can optionally include names for the function parameters: `(x: Int, y: Int) -> Point`.
 These names can be used for documenting the meaning of the parameters.
 
@@ -119,7 +119,7 @@ typealias ClickHandler = (Button, ClickEvent) -> Unit
 ```
 
 </div>
- 
+
 ### Instantiating a function type
 
 There are several ways to obtain an instance of a function type:
@@ -133,11 +133,11 @@ There are several ways to obtain an instance of a function type:
 * Using a callable reference to an existing declaration:
     * a top-level, local, member, or extension [function](reflection.html#function-references): `::isOdd`, `String::toInt`,
     * a top-level, member, or extension [property](reflection.html#property-references): `List<Int>::size`,
-    * a [constructor](reflection.html#constructor-references): `::Regex`
+    * <span style="color:red;">a [constructor](reflection.html#constructor-references): `::Regex`</span>
     
    These include [bound callable references](reflection.html#bound-function-and-property-references-since-11) that point to a member of a particular instance: `foo::toString`.
    
-* Using instances of a custom class that implements a function type as an interface: 
+* <span style="color:red;">Using instances of a custom class that implements a function type as an interface: </span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -164,7 +164,7 @@ val a = { i: Int -> i + 1 } // The inferred type is (Int) -> Int
 *Non-literal* values of function types with and without receiver are interchangeable, so that the receiver can stand in 
 for the first parameter, and vice versa. For instance, a value of type `(A, B) -> C` can be passed or assigned 
  where a `A.(B) -> C` is expected and the other way around:
- 
+
 <div class="sample" markdown="1" theme="idea">
 
 ```kotlin
@@ -262,7 +262,7 @@ val sum: (Int, Int) -> Int = { x: Int, y: Int -> x + y }
 
 A lambda expression is always surrounded by curly braces,
 parameter declarations in the full syntactic form go inside curly braces and have optional type annotations,
-the body goes after an `->` sign. If the inferred return type of the lambda is not `Unit`, the last (or possibly single) expression inside the lambda body is treated as the return value.
+the body goes after an `->` sign. <span style="color:red;">If the inferred return type of the lambda is not `Unit`, the last (or possibly single) expression inside the lambda body is treated as the return value.</span>
 
 If we leave all the optional annotations out, what's left looks like this:
 
@@ -278,8 +278,8 @@ val sum = { x, y -> x + y }
 
 ### Passing trailing lambdas
 
-In Kotlin, there is a convention: if the last parameter of a function is a function, then a lambda expression 
-passed as the corresponding argument can be placed outside the parentheses:
+In Kotlin, there is a convention:<span style="color:red;"> if the last parameter of a function is a function, then a lambda expression 
+passed as the corresponding argument can be placed outside the parentheses:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -291,7 +291,7 @@ val product = items.fold(1) { acc, e -> acc * e }
 
 Such syntax is also known as _trailing lambda_.
 
-If the lambda is the only argument to that call, the parentheses can be omitted entirely: 
+<span style="color:red;">If the lambda is the only argument to that call, the parentheses can be omitted entirely:</span> 
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -352,7 +352,7 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 
 ### Underscore for unused variables (since 1.1)
 
-If the lambda parameter is unused, you can place an underscore instead of its name:
+<span style="color:red;">If the lambda parameter is unused, you can place an underscore instead of its name:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -393,8 +393,8 @@ fun(x: Int, y: Int): Int {
 
 </div>
 
-The parameters and the return type are specified in the same way as for regular functions, except that the parameter
-types can be omitted if they can be inferred from context:
+<span style="color:red;">The parameters and the return type are specified in the same way as for regular functions, except that the parameter
+types can be omitted if they can be inferred from context:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -404,12 +404,12 @@ ints.filter(fun(item) = item > 0)
 
 </div>
 
-The return type inference for anonymous functions works just like for normal functions: the return type is inferred
+The return type inference for anonymous functions works just like for normal functions:<span style="color:red;"> the return type is inferred
 automatically for anonymous functions with an expression body and has to be specified explicitly (or is assumed to be
-`Unit`) for anonymous functions with a block body.
+`Unit`) for anonymous functions with a block body.</span>
 
-Note that anonymous function parameters are always passed inside the parentheses. The shorthand syntax allowing
-to leave the function outside the parentheses works only for lambda expressions.
+Note that anonymous function parameters are always passed inside the parentheses. <span style="color:red;">The shorthand syntax allowing
+to leave the function outside the parentheses works only for lambda expressions.</span>
 
 One other difference between lambda expressions and anonymous functions is the behavior of
 [non-local returns](inline-functions.html#non-local-returns). A *return*{: .keyword }  statement without a label
@@ -444,7 +444,7 @@ As said above, Kotlin provides the ability [to call an instance](#invoking-a-fun
 Inside the body of the function literal, the receiver object passed to a call becomes an *implicit* *this*{: .keyword}, so that you 
 can access the members of that receiver object without any additional qualifiers, or access the receiver object 
 using a [`this` expression](this-expressions.html).
- 
+
 This behavior is similar to [extension functions](extensions.html), which also allow you to access the members of the receiver object 
 inside the body of the function.
 
@@ -470,7 +470,7 @@ val sum = fun Int.(other: Int): Int = this + other
 
 </div>
 
-Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.
+<span style="color:red;">Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.</span>
 One of the most important examples of their usage is [type-safe builders](type-safe-builders.html):
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>

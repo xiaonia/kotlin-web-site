@@ -7,6 +7,8 @@ title: "Inline classes"
 
 # Inline classes
 
+<span style="color:red;"> 自动装箱/拆箱类型(编译时自动优化) </span>
+
 > Inline classes are available only since Kotlin 1.3 and currently are *experimental*. See details [below](#experimental-status-of-inline-classes)
 {:.note}
 
@@ -18,7 +20,7 @@ To solve such issues, Kotlin introduces a special kind of class called an `inlin
 
 ```kotlin
 inline class Password(val value: String)
-```  
+```
 
 </div>
 
@@ -86,11 +88,11 @@ fun main() {
     val name = Name("Kotlin")
     println(name.prettyPrint()) // Still called as a static method
 }
-```  
+```
 
 </div>
 
-It is forbidden for inline classes to participate in a class hierarchy. This means that inline classes cannot extend other classes and must be *final*{: .keyword }.
+<span style="color:red;">It is forbidden for inline classes to participate in a class hierarchy. This means that inline classes cannot extend other classes and must be *final*{: .keyword }.</span>
 
 ## Representation
 
@@ -124,11 +126,11 @@ fun main() {
     // In the end, 'c' contains unboxed representation (just '42'), as 'f' 
     val c = id(f)  
 }
-```  
+```
 
 </div>
 
-Because inline classes may be represented both as the underlying value and as a wrapper, [referential equality](equality.html#referential-equality) is pointless for them and is therefore prohibited.
+<span style="color:red;">Because inline classes may be represented both as the underlying value and as a wrapper, [referential equality](equality.html#referential-equality) is pointless for them and is therefore prohibited.</span>
 
 ### Mangling
 

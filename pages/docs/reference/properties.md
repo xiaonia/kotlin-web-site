@@ -110,8 +110,8 @@ val isEmpty get() = this.size == 0  // has type Boolean
 ```
 </div>
 
-If you need to change the visibility of an accessor or to annotate it, but don't need to change the default implementation,
-you can define the accessor without defining its body:
+<span style="color:red;">If you need to change the visibility of an accessor or to annotate it, but don't need to change the default implementation,
+you can define the accessor without defining its body:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
 
@@ -126,7 +126,7 @@ var setterWithAnnotation: Any? = null
 
 ### Backing Fields
 
-Fields cannot be declared directly in Kotlin classes. However, when a property needs a backing field, Kotlin provides it automatically. This backing field can be referenced in the accessors using the `field` identifier:
+<span style="color:red;">Fields cannot be declared directly in Kotlin classes. However, when a property needs a backing field, Kotlin provides it automatically. This backing field can be referenced in the accessors using the `field` identifier:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
 
@@ -154,7 +154,7 @@ val isEmpty: Boolean
 
 ### Backing Properties
 
-If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:
+<span style="color:red;">If you want to do something that does not fit into this "implicit backing field" scheme, you can always fall back to having a *backing property*:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
 
@@ -170,13 +170,13 @@ public val table: Map<String, Int>
 ```
 </div>
 
-> **On the JVM**: The access to private properties with default getters and setters is optimized
-so no function call overhead is introduced in this case.
+> **On the JVM**: <span style="color:red;">The access to private properties with default getters and setters is optimized
+so no function call overhead is introduced in this case.</span>
 
 
 ## Compile-Time Constants
 
-If the value of a read-only property is known at the compile time, mark it as a _compile time constant_ using the *const*{: .keyword } modifier.
+<span style="color:red;">If the value of a read-only property is known at the compile time, mark it as a _compile time constant_ using the *const*{: .keyword } modifier.</span>
 Such properties need to fulfil the following requirements:
 
   * Top-level, or member of an [*object*{: .keyword } declaration](object-declarations.html#object-declarations) or [a *companion object*{: .keyword }](object-declarations.html#companion-objects).
@@ -221,12 +221,12 @@ public class MyTest {
 ```
 </div>
 
-The modifier can be used on `var` properties declared inside the body of a class (not in the primary constructor, and only
+<span style="color:red;">The modifier can be used on `var` properties declared inside the body of a class (not in the primary constructor, and only
 when the property does not have a custom getter or setter) and, since Kotlin 1.2, for top-level properties and 
 local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
 
 Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
-being accessed and the fact that it hasn't been initialized.
+being accessed and the fact that it hasn't been initialized.</span>
 
 ### Checking whether a lateinit var is initialized (since 1.2)
 
@@ -250,7 +250,7 @@ the outer types, or at top level in the same file.
 See [Overriding Properties](classes.html#overriding-properties)
 
 ## Delegated Properties
-  
+
 The most common kind of properties simply reads from (and maybe writes to) a backing field. 
 On the other hand, with custom getters and setters one can implement any behaviour of a property.
 Somewhere in between, there are certain common patterns of how a property may work. A few examples: lazy values,

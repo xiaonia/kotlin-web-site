@@ -24,8 +24,8 @@ class Invoice { /*...*/ }
 </div>
 
 The class declaration consists of the class name, the class header (specifying its type parameters, the primary
-constructor etc.) and the class body, surrounded by curly braces. Both the header and the body are optional;
-if the class has no body, curly braces can be omitted.
+constructor etc.) and the class body, surrounded by curly braces. <span style="color:red;">Both the header and the body are optional;
+if the class has no body, curly braces can be omitted.</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -37,8 +37,8 @@ class Empty
 
 ### Constructors
 
-A class in Kotlin can have a **primary constructor** and one or more **secondary constructors**. The primary
-constructor is part of the class header: it goes after the class name (and optional type parameters).
+<span style="color:red;">A class in Kotlin can have a **primary constructor** and one or more **secondary constructors**. The primary
+constructor is part of the class header: it goes after the class name (and optional type parameters).</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -273,12 +273,12 @@ class Derived(p: Int) : Base(p)
 
 </div>
 
-If the derived class has a primary constructor, the base class can (and must) be initialized right there,
-using the parameters of the primary constructor.
+<span style="color:red;">If the derived class has a primary constructor, the base class can (and must) be initialized right there,
+using the parameters of the primary constructor.</span>
 
-If the derived class has no primary constructor, then each secondary constructor has to initialize the base type
+<span style="color:red;">If the derived class has no primary constructor, then each secondary constructor has to initialize the base type
 using the *super*{: .keyword } keyword, or to delegate to another constructor which does that.
-Note that in this case different secondary constructors can call different constructors of the base type:
+Note that in this case different secondary constructors can call different constructors of the base type:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -316,7 +316,7 @@ The *override*{: .keyword } modifier is required for `Circle.draw()`. If it were
 If there is no *open*{: .keyword } modifier on a function, like `Shape.fill()`, declaring a method with the same signature in a subclass is illegal,
 either with *override*{: .keyword } or without it. The *open*{: .keyword } modifier has no effect when added on members of a final class (i.e.. a class with no *open*{: .keyword } modifier).
 
-A member marked *override*{: .keyword } is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use *final*{: .keyword }:
+<span style="color:red;">A member marked *override*{: .keyword } is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use *final*{: .keyword }:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -410,7 +410,7 @@ It means that, by the time of the base class constructor execution, the properti
 
 ### Calling the superclass implementation
 
-Code in a derived class can call its superclass functions and property accessors implementations using the *super*{: .keyword } keyword:
+<span style="color:red;">Code in a derived class can call its superclass functions and property accessors implementations using the *super*{: .keyword } keyword:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -432,7 +432,7 @@ class FilledRectangle : Rectangle() {
 
 </div>
 
-Inside an inner class, accessing the superclass of the outer class is done with the *super*{: .keyword } keyword qualified with the outer class name: `super@Outer`:
+<span style="color:red;">Inside an inner class, accessing the superclass of the outer class is done with the *super*{: .keyword } keyword qualified with the outer class name: `super@Outer`:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -456,9 +456,9 @@ class FilledRectangle: Rectangle() {
 
 ### Overriding rules
 
-In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits multiple implementations of the same member from its immediate superclasses,
-it must override this member and provide its own implementation (perhaps, using one of the inherited ones).
-To denote the supertype from which the inherited implementation is taken, we use *super*{: .keyword } qualified by the supertype name in angle brackets, e.g. `super<Base>`:
+<span style="color:red;">In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits multiple implementations of the same member from its immediate superclasses,
+it must override this member and provide its own implementation (perhaps, using one of the inherited ones).</span>
+<span style="color:red;">__To denote the supertype from which the inherited implementation is taken, we use *super*{: .keyword } qualified by the supertype name in angle brackets, e.g. `super<Base>`:__</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 

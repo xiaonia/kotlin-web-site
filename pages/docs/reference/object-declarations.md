@@ -10,6 +10,8 @@ title: "Object Expressions, Object Declarations and Companion Objects"
 Sometimes we need to create an object of a slight modification of some class, without explicitly declaring a new subclass for it.
 Kotlin handles this case with *object expressions* and *object declarations*.
 
+<span style="color:red;">即匿名内部类与单例类</span>
+
 ## Object expressions
 
 To create an object of an anonymous class that inherits from some type (or types), we write:
@@ -58,7 +60,7 @@ fun foo() {
 ```
 </div>
 
-Note that anonymous objects can be used as types only in local and private declarations. If you use an anonymous object as a
+ <span style="color:red;">Note that anonymous objects can be used as types only in local and private declarations</span>. If you use an anonymous object as a
 return type of a public function or the type of a public property, the actual type of that function or property
 will be the declared supertype of the anonymous object, or `Any` if you didn't declare any supertype. Members added
 in the anonymous object will not be accessible.
@@ -85,7 +87,7 @@ class C {
 ```
 </div>
 
-The code in object expressions can access variables from the enclosing scope.
+ <span style="color:red;">The code in object expressions can access variables from the enclosing scope</span>.
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -111,7 +113,7 @@ fun countClicks(window: JComponent) {
 ## Object declarations
 
 [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern) may be useful in several cases,
-and Kotlin (after Scala) makes it easy to declare singletons:
+and Kotlin (after Scala) makes it easy to declare singletons:<span style="color:red;">即单例</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -154,10 +156,13 @@ object DefaultListener : MouseAdapter() {
 ```
 </div>
 
-**NOTE**: object declarations can't be local (i.e. be nested directly inside a function), but they can be nested into other object declarations or non-inner classes.
+**NOTE**:  object declarations can't be local (i.e. be nested directly inside a function), but they can be nested into other object declarations or non-inner classes.
+<span style="color:red;">即凡是不能创建单例类的场景都不能使用object declarations</span>
 
 
 ### Companion Objects
+
+<span style="color:red;">object declaration类内不能嵌套使用Companion；同时一个类只能有一个Companion</span>
 
 An object declaration inside a class can be marked with the *companion*{: .keyword } keyword:
 
@@ -181,7 +186,7 @@ val instance = MyClass.create()
 ```
 </div>
 
-The name of the companion object can be omitted, in which case the name `Companion` will be used:
+<span style="color:red;">The name of the companion object can be omitted, in which case the name `Companion` will be used</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -194,8 +199,8 @@ val x = MyClass.Companion
 ```
 </div>
 
-The name of a class used by itself (not as a qualifier to another name) acts as a reference to the companion
-object of the class (whether named or not):
+<span style="color:red;">The name of a class used by itself (not as a qualifier to another name) acts as a reference to the companion
+object of the class (whether named or not)</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -234,8 +239,8 @@ val f: Factory<MyClass> = MyClass
 ```
 </div>
 
-However, on the JVM you can have members of companion objects generated as real static methods and fields, if you use
-the `@JvmStatic` annotation. See the [Java interoperability](java-to-kotlin-interop.html#static-fields) section
+<span style="color:red;">However, on the JVM you can have members of companion objects generated as real static methods and fields, if you use
+the `@JvmStatic` annotation</span>. See the [Java interoperability](java-to-kotlin-interop.html#static-fields) section
 for more details.
 
 

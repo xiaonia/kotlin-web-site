@@ -28,12 +28,12 @@ object NotANumber : Expr()
 (The example above uses one additional new feature of Kotlin 1.1: the possibility for data classes to extend other
 classes, including sealed classes.)
 
-A sealed class is [abstract](classes.html#abstract-classes) by itself, it cannot be instantiated directly and can have *abstract*{: .keyword } members.
+<span style="color:red;">A sealed class is [abstract](classes.html#abstract-classes) by itself, it cannot be instantiated directly and can have *abstract*{: .keyword } members.</span>
 
-Sealed classes are not allowed to have non-*private*{: .keyword } constructors (their constructors are *private*{: .keyword } by default).
+<span style="color:red;">Sealed classes are not allowed to have non-*private*{: .keyword } constructors (their constructors are *private*{: .keyword } by default).</span>
 
-Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily in
-the same file.
+<span style="color:red;">Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily in
+the same file.</span>
 
 The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
 to verify that the statement covers all cases, you don't need to add an `else` clause to the statement. However, this works only if you use `when` as an expression (using the result) and not as a statement.

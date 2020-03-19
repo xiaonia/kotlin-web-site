@@ -28,7 +28,7 @@ class Example {
 
 The syntax is: `val/var <property name>: <Type> by <expression>`. The expression after *by*{:.keyword} is the _delegate_, 
 because `get()` (and `set()`) corresponding to the property will be delegated to its `getValue()` and `setValue()` methods.
-Property delegates don’t have to implement any interface, but they have to provide a `getValue()` function (and `setValue()` --- for *var*{:.keyword}s).
+<span style="color:red;">Property delegates don’t have to implement any interface, but they have to provide a `getValue()` function (and `setValue()` --- for *var*{:.keyword}s).</span>
 For example:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
@@ -67,7 +67,7 @@ This prints:
 ```
 Example@33a17727, thank you for delegating ‘p’ to me!
 ```
- 
+
 Similarly, when we assign to `p`, the `setValue()` function is called. The first two parameters are the same, and the third holds the value being assigned:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
@@ -79,14 +79,14 @@ e.p = "NEW"
 </div>
 
 This prints
- 
+
 ```
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
 The specification of the requirements to the delegated object can be found [below](delegated-properties.html#property-delegate-requirements).
 
-Note that since Kotlin 1.1 you can declare a delegated property inside a function or code block, it shouldn't necessarily be a member of a class.
+<span style="color:red;">Note that since Kotlin 1.1 you can declare a delegated property inside a function or code block, it shouldn't necessarily be a member of a class.</span>
 Below you can find [the example](delegated-properties.html#local-delegated-properties-since-11).
 
 ## Standard Delegates
@@ -124,7 +124,7 @@ you can use `LazyThreadSafetyMode.NONE`: it doesn't incur any thread-safety guar
 
 ### Observable
 
-[`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html)
+<span style="color:red;">[`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html)</span>
 takes two arguments: the initial value and a handler for modifications.
 The handler is called every time we assign to the property (_after_ the assignment has been performed). It has three
 parameters: a property being assigned to, the old value and the new one:
@@ -150,7 +150,7 @@ fun main() {
 
 </div>
 
-If you want to intercept assignments and "veto" them, use [`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) instead of `observable()`.
+<span style="color:red;">If you want to intercept assignments and "veto" them, use [`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) instead of `observable()`.</span>
 The handler passed to the `vetoable` is called _before_ the assignment of a new property value has been performed.
 
 ## Storing Properties in a Map
@@ -207,7 +207,7 @@ fun main() {
 
 </div>
 
-This works also for *var*{:.keyword}’s properties if you use a `MutableMap` instead of read-only `Map`:
+<span style="color:red;">This works also for *var*{:.keyword}’s properties if you use a `MutableMap` instead of read-only `Map`:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -222,8 +222,8 @@ class MutableUser(val map: MutableMap<String, Any?>) {
 
 ## Local Delegated Properties (since 1.1)
 
-You can declare local variables as delegated properties.
-For instance, you can make a local variable lazy:
+<span style="color=red;">You can declare local variables as delegated properties.
+For instance, you can make a local variable lazy:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -246,24 +246,24 @@ If `someCondition` fails, the variable won't be computed at all.
 
 Here we summarize requirements to delegate objects. 
 
-For a **read-only** property (i.e. a *val*{:.keyword}), a delegate has to provide a function named `getValue` that takes the following parameters:
+<span style="color:red;">For a **read-only** property (i.e. a *val*{:.keyword}), a delegate has to provide a function named `getValue` that takes the following parameters:</span>
 
 * `thisRef` --- must be the same or a supertype of the _property owner_ (for extension properties --- the type being extended);
 * `property` --- must be of type `KProperty<*>` or its supertype.
- 
+
 this function must return the same type as property (or its subtype).
 
-For a **mutable** property (a *var*{:.keyword}), a delegate has to _additionally_ provide a function named `setValue` that takes the following parameters:
- 
+<span style="color:red;">For a **mutable** property (a *var*{:.keyword}), a delegate has to _additionally_ provide a function named `setValue` that takes the following parameters:</span>
+
 * `thisRef` --- same as for `getValue()`;
 * `property` --- same as for `getValue()`;
 * `new value` --- must be of the same type as the property or its subtype.
- 
-`getValue()` and/or `setValue()` functions may be provided either as member functions of the delegate class or extension functions.
-The latter is handy when you need to delegate property to an object which doesn't originally provide these functions.
-Both of the functions need to be marked with the `operator` keyword.
 
-The delegate class may implement one of the interfaces `ReadOnlyProperty` and `ReadWriteProperty` containing the required `operator` methods.
+<span style="color:red;">`getValue()` and/or `setValue()` functions may be provided either as member functions of the delegate class or extension functions.
+The latter is handy when you need to delegate property to an object which doesn't originally provide these functions.
+Both of the functions need to be marked with the `operator` keyword.</span>
+
+<span style="color=:ed;">The delegate class may implement one of the interfaces `ReadOnlyProperty` and `ReadWriteProperty` containing the required `operator` methods. </span>
 These interfaces are declared in the Kotlin standard library:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
@@ -310,9 +310,9 @@ Note that the syntax `this::prop` to refer a [bound callable reference](reflecti
 
 ### Providing a delegate (since 1.1)
 
-By defining the `provideDelegate` operator you can extend the logic of creating the object to which the property implementation is delegated.
+<span style="color:red;">By defining the `provideDelegate` operator you can extend the logic of creating the object to which the property implementation is delegated.
 If the object used on the right hand side of `by` defines `provideDelegate` as a member or extension function, that function will be
-called to create the property delegate instance.
+called to create the property delegate instance.</span>
 
 One of the possible use cases of `provideDelegate` is to check property consistency when the property is created, not only in its getter or setter.
 
@@ -402,4 +402,4 @@ class C {
 
 </div>
 
-Note that the `provideDelegate` method affects only the creation of the auxiliary property and doesn't affect the code generated for getter or setter.
+<span style="color:red;">Note that the `provideDelegate` method affects only the creation of the auxiliary property and doesn't affect the code generated for getter or setter.</span>

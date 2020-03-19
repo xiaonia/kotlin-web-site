@@ -7,8 +7,8 @@ title: "Inline Functions and Reified Type Parameters"
 
 # Inline Functions
 
-Using [higher-order functions](lambdas.html) imposes certain runtime penalties: each function is an object, and it captures a closure,
-i.e. those variables that are accessed in the body of the function.
+<span style="color:red;">Using [higher-order functions](lambdas.html) imposes certain runtime penalties: each function is an object, and it captures a closure,
+i.e. those variables that are accessed in the body of the function.</span>
 Memory allocations (both for function objects and classes) and virtual calls introduce runtime overhead.
 
 But it appears that in many cases this kind of overhead can be eliminated by inlining the lambda expressions.
@@ -45,8 +45,8 @@ inline fun <T> lock(lock: Lock, body: () -> T): T { ... }
 ```
 </div>
 
-The `inline` modifier affects both the function itself and the lambdas passed to it: all of those will be inlined
-into the call site.
+<span style="color:red;">The `inline` modifier affects both the function itself and the lambdas passed to it: all of those will be inlined
+into the call site.</span>
 
 Inlining may cause the generated code to grow; however, if we do it in a reasonable way (i.e. avoiding inlining large functions), it will pay off in performance, especially at "megamorphic" call-sites inside loops.
 
@@ -208,7 +208,7 @@ fun main(s: Array<String>) {
 ```
 </div>
 
-Normal functions (not marked as inline) cannot have reified parameters.
+<span style="color:red;">Normal functions (not marked as inline) cannot have reified parameters.</span>
 A type that does not have a run-time representation (e.g. a non-reified type parameter or a fictitious type like `Nothing`)
 cannot be used as an argument for a reified type parameter.
 
@@ -222,7 +222,7 @@ The `inline` modifier can be used on accessors of properties that don't have a b
 You can annotate individual property accessors:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
-```kotlin
+​```kotlin
 val foo: Foo
     inline get() = Foo()
 
@@ -255,4 +255,4 @@ This imposes certain risks of binary incompatibility caused by changes in the mo
 To eliminate the risk of such incompatibility being introduced by a change in **non**-public API of a module, the public API inline functions are not allowed to use non-public-API declarations, i.e. `private` and `internal` declarations and their parts, in their bodies.
 
 An `internal` declaration can be annotated with `@PublishedApi`, which allows its use in public API inline functions. When an `internal` inline function is marked as `@PublishedApi`, its body is checked too, as if it were public.
- 
+

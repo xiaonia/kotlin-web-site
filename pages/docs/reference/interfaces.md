@@ -7,9 +7,9 @@ title: "Interfaces"
 
 # Interfaces
 
-Interfaces in Kotlin can contain declarations of abstract methods, as well as method
+<span style="color:red;">Interfaces in Kotlin can contain declarations of abstract methods, as well as method
 implementations. What makes them different from abstract classes is that interfaces cannot store state. They can have
-properties but these need to be abstract or to provide accessor implementations.
+properties but these need to be abstract or to provide accessor implementations.</span>
 
 An interface is defined using the keyword *interface*{: .keyword }
 
@@ -40,9 +40,9 @@ class Child : MyInterface {
 
 ## Properties in Interfaces
 
-You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
+<span style="color:red;">You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
 implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
-declared in interfaces can't reference them.
+declared in interfaces can't reference them.</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -91,7 +91,7 @@ data class Employee(
 ```
 </div>
 
-## Resolving overriding conflicts
+## <span style="color:red;">Resolving overriding conflicts</span>
 
 When we declare many types in our supertype list, it may appear that we inherit more than one implementation of the same method. For example
 

@@ -43,7 +43,7 @@ Stream().read() // create instance of class Stream and call read()
 
 ### Parameters
 
-Function parameters are defined using Pascal notation, i.e. *name*: *type*. Parameters are separated using commas. Each parameter must be explicitly typed:
+Function parameters are defined using Pascal notation, i.e. *name*: *type*. Parameters are separated using commas. <span style="color:red;">Each parameter must be explicitly typed</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -67,7 +67,7 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) { /*...*/ }
 Default values are defined using the **=** after type along with the value.
 
 Overriding methods always use the same default parameter values as the base method.
-When overriding a method with default parameter values, the default parameter values must be omitted from the signature:
+<span style="color:red;">When overriding a method with default parameter values, the default parameter values must be omitted from the signature</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -82,7 +82,7 @@ class B : A() {
 ```
 </div>
 
-If a default parameter precedes a parameter with no default value, the default value can only be used by calling the function with [named arguments](#named-arguments):
+<span style="color:red;">If a default parameter precedes a parameter with no default value, the default value can only be used by calling the function with [named arguments](#named-arguments)</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -93,7 +93,7 @@ foo(baz = 1) // The default value bar = 0 is used
 ```
 </div>
 
-If the last argument after default parameters is a [lambda](lambdas.html#lambda-expression-syntax), it can be passed in either as a named argument or [outside the parentheses](lambdas.html#passing-a-lambda-to-the-last-parameter):
+<span style="color:red;">If the last argument after default parameters is a [lambda](lambdas.html#lambda-expression-syntax), it can be passed in either as a named argument or [outside the parentheses](lambdas.html#passing-a-lambda-to-the-last-parameter)</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -166,7 +166,7 @@ reformat(str, wordSeparator = '_')
 ```
 </div>
 
-When a function is called with both positional and named arguments, all the positional arguments should be placed before the first named one. For example, the call `f(1, y = 2)` is allowed, but `f(x = 1, 2)` is not.
+<span style="color:red;">When a function is called with both positional and named arguments, all the positional arguments should be placed before the first named one</span>. For example, the call `f(1, y = 2)` is allowed, but `f(x = 1, 2)` is not.
 
 [Variable number of arguments (*vararg*{: .keyword })](#variable-number-of-arguments-varargs) can be passed in the named form by using the **spread** operator:
 
@@ -211,7 +211,7 @@ fun printHello(name: String?) { ... }
 
 ### Single-expression functions
 
-When a function returns a single expression, the curly braces can be omitted and the body is specified after a **=** symbol:
+<span style="color:red;">When a function returns a single expression, the curly braces can be omitted and the body is specified after a **=** symbol</span>:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -231,7 +231,7 @@ fun double(x: Int) = x * 2
 
 ### Explicit return types
 
-Functions with block body must always specify return types explicitly, unless it's intended for them to return `Unit`, [in which case it is optional](#unit-returning-functions).
+<span style="color:red;">Functions with block body must always specify return types explicitly, unless it's intended for them to return `Unit`, [in which case it is optional](#unit-returning-functions)</span>.
 Kotlin does not infer return types for functions with block bodies because such functions may have complex control flow in the body, and the return
 type will be non-obvious to the reader (and sometimes even for the compiler). 
 
@@ -263,9 +263,9 @@ val list = asList(1, 2, 3)
 
 Inside a function a `vararg`-parameter of type `T` is visible as an array of `T`, i.e. the `ts` variable in the example above has type `Array<out T>`.
 
-Only one parameter may be marked as `vararg`. If a `vararg` parameter is not the last one in the list, values for the
+<span style="color:red;">Only one parameter may be marked as `vararg`. If a `vararg` parameter is not the last one in the list, values for the
 following parameters can be passed using the named argument syntax, or, if the parameter has a function type, by passing
-a lambda outside parentheses.
+a lambda outside parentheses.</span>
 
 When we call a `vararg`-function, we can pass arguments one-by-one, e.g. `asList(1, 2, 3)`, or, if we already have an array
  and want to pass its contents to the function, we use the **spread** operator (prefix the array with `*`):
@@ -312,7 +312,7 @@ infix fun Int.shl(x: Int): Int { ... }
 > See the [Grammar reference](grammar.html#expressions) for the complete operators precedence hierarchy.
 {:.note}
 
-Note that infix functions always require both the receiver and the parameter to be specified. When you're
+<span style="color:red;">Note that infix functions always require both the receiver and the parameter to be specified</span>. When you're
 calling a method on the current receiver using the infix notation, you need to use `this` explicitly; unlike regular method calls, 
 it cannot be omitted. This is required to ensure unambiguous parsing.
 
@@ -356,7 +356,7 @@ fun dfs(graph: Graph) {
 ```
 </div>
 
-Local function can access local variables of outer functions (i.e. the closure), so in the case above, the *visited* can be a local variable:
+<span style="color:red;">Local function can access local variables of outer functions (i.e. the closure)</span>, so in the case above, the *visited* can be a local variable:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
 

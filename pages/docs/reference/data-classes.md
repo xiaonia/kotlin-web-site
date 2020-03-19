@@ -19,21 +19,21 @@ data class User(val name: String, val age: Int)
 
 </div>
 
-The compiler automatically derives the following members from all properties declared in the primary constructor:
-  
+<span style="color:red;">The compiler automatically derives the following members from all properties declared in the primary constructor:</span>
+
   * `equals()`/`hashCode()` pair;
   * `toString()` of the form `"User(name=John, age=42)"`;
   * [`componentN()` functions](multi-declarations.html) corresponding to the properties in their order of declaration;
   * `copy()` function (see below).
 
-To ensure consistency and meaningful behavior of the generated code, data classes have to fulfill the following requirements:
+<span style="color:red;">To ensure consistency and meaningful behavior of the generated code, data classes have to fulfill the following requirements:</span>
 
   * The primary constructor needs to have at least one parameter;
   * All primary constructor parameters need to be marked as `val` or `var`;
   * Data classes cannot be abstract, open, sealed or inner;
   * (before 1.1) Data classes may only implement interfaces.
-  
-Additionally, the members generation follows these rules with regard to the members inheritance:
+
+<span style="color:red;">Additionally, the members generation follows these rules with regard to the members inheritance:</span>
 
 * If there are explicit implementations of `equals()`, `hashCode()` or `toString()` in the data class body or 
 *final*{: .keyword } implementations in a superclass, then these functions are not generated, and the existing 
@@ -45,10 +45,11 @@ supertype cannot be overridden due to incompatible signatures or being final, an
 Kotlin 1.2 and is prohibited in Kotlin 1.3.
 * Providing explicit implementations for the `componentN()` and `copy()` functions is not allowed.
   
+
 Since 1.1, data classes may extend other classes (see [Sealed classes](sealed-classes.html) for examples).
 
-On the JVM, if the generated class needs to have a parameterless constructor, default values for all properties have to be specified
-(see [Constructors](classes.html#constructors)).
+<span style="color:red;">On the JVM, if the generated class needs to have a parameterless constructor, default values for all properties have to be specified
+(see [Constructors](classes.html#constructors)).</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -60,7 +61,7 @@ data class User(val name: String = "", val age: Int = 0)
 
 ## Properties Declared in the Class Body
 
-Note that the compiler only uses the properties defined inside the primary constructor for the automatically generated functions. To exclude a property from the generated implementations, declare it inside the class body:
+<span style="color:red;">Note that the compiler only uses the properties defined inside the primary constructor for the automatically generated functions. To exclude a property from the generated implementations, declare it inside the class body:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -96,7 +97,7 @@ fun main() {
 </div>
 
 ## Copying
-  
+
 It's often the case that we need to copy an object altering _some_ of its properties, but keeping the rest unchanged. 
 This is what `copy()` function is generated for. For the `User` class above, its implementation would be as follows:
 

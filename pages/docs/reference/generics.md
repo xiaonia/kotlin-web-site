@@ -7,6 +7,10 @@ title: "Generics: in, out, where"
 
 # Generics
 
+<span style="color:red;"> __< in T >__可以理解成java泛型中的__< * super T >__，主要用于put  __T及其子类__ 的数据；__< out T >__相当于java泛型中的__< * extends T >__，主要用于get __T及其子类__ 的数据 </span>
+
+
+
 As in Java, classes in Kotlin may have type parameters:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
@@ -115,7 +119,7 @@ In "clever words", the wildcard with an **extends**\-bound (**upper** bound) mak
 The key to understanding why this trick works is rather simple: if you can only **take** items from a collection, then using a collection of `String`s
 and reading `Object`s from it is fine. Conversely, if you can only _put_ items into the collection, it's OK to take a collection of
 `Object`s and put `String`s into it: in Java we have `List<? super String>` a **supertype** of `List<Object>`.
- 
+
 The latter is called **contravariance**, and you can only call methods that take String as an argument on `List<? super String>` 
 (e.g., you can call `add(String)` or `set(int, String)`), while 
 if you call something that returns `T` in `List<T>`, you don't get a `String`, but an `Object`.
@@ -370,8 +374,8 @@ sort(listOf(HashMap<Int, String>())) // Error: HashMap<Int, String> is not a sub
 
 </div>
 
-The default upper bound (if none specified) is `Any?`. Only one upper bound can be specified inside the angle brackets.
-If the same type parameter needs more than one upper bound, we need a separate **where**\-clause:
+<span style="color:red;">The default upper bound (if none specified) is `Any?`. Only one upper bound can be specified inside the angle brackets.
+If the same type parameter needs more than one upper bound, we need a separate **where**\-clause:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only auto-indent="false">
 
@@ -401,9 +405,9 @@ Type casts to generic types with concrete type arguments, e.g. `foo as List<Stri
 These [unchecked casts](typecasts.html#unchecked-casts) can be used when type safety is implied by the high-level 
 program logic but cannot be inferred directly by the compiler. The compiler issues a warning on unchecked casts, and at 
 runtime, only the non-generic part is checked (equivalent to `foo as List<*>`).
- 
+
 The type arguments of generic function calls are also only checked at compile time. Inside the function bodies, 
 the type parameters cannot be used for type checks, and type casts to type parameters (`foo as T`) are unchecked. However,
-[reified type parameters](inline-functions.html#reified-type-parameters) of inline functions are substituted by the actual 
+<span style="color:red;">[reified type parameters](inline-functions.html#reified-type-parameters) of inline functions are substituted by the actual 
 type arguments in the inlined function body at the call sites and thus can be used for type checks and casts,
-with the same restrictions for instances of generic types as described above.
+with the same restrictions for instances of generic types as described above.</span>

@@ -38,8 +38,8 @@ fun main() {
 
 </div>
 
-The *by*{: .keyword }-clause in the supertype list for `Derived` indicates that `b` will be stored internally in objects 
-of `Derived` and the compiler will generate all the methods of `Base` that forward to `b`.
+<span style="color:red;">The *by*{: .keyword }-clause in the supertype list for `Derived` indicates that `b` will be stored internally in objects 
+of `Derived` and the compiler will generate all the methods of `Base` that forward to `b`.</span>
 
 ### Overriding a member of an interface implemented by delegation 
 

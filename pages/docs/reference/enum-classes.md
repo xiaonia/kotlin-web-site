@@ -62,7 +62,7 @@ Enum entries cannot contain nested types other than inner classes (deprecated in
 
 ## Implementing Interfaces in Enum Classes
 
-An enum class may implement an interface (but not derive from a class), providing either a single interface members implementation for all of the entries, or separate ones for each entry within its anonymous class. This is done by adding the interfaces to the enum class declaration as follows:
+<span style="color:red;">An enum class may implement an interface (but not derive from a class), providing either a single interface members implementation for all of the entries, or separate ones for each entry within its anonymous class. </span>This is done by adding the interfaces to the enum class declaration as follows:
 
 <div class="sample" markdown="1" theme="idea">
 
@@ -110,8 +110,8 @@ EnumClass.values(): Array<EnumClass>
 The `valueOf()` method throws an `IllegalArgumentException` if the specified name does
 not match any of the enum constants defined in the class.
 
-Since Kotlin 1.1, it's possible to access the constants in an enum class in a generic way, using
-the `enumValues<T>()` and `enumValueOf<T>()` functions:
+<span style="color:red;">Since Kotlin 1.1, it's possible to access the constants in an enum class in a generic way, using
+the `enumValues<T>()` and `enumValueOf<T>()` functions:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -126,7 +126,7 @@ printAllValues<RGB>() // prints RED, GREEN, BLUE
 ```
 </div>
 
-Every enum constant has properties to obtain its name and position in the enum class declaration:
+<span style="color:red;">Every enum constant has properties to obtain its name and position in the enum class declaration:</span>
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
@@ -136,5 +136,6 @@ val ordinal: Int
 ```
 </div>
 
-The enum constants also implement the [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) interface,
-with the natural order being the order in which they are defined in the enum class.
+<span style="color:red;">The enum constants also implement the [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) interface,
+with the natural order being the order in which they are defined in the enum class.</span>
+
